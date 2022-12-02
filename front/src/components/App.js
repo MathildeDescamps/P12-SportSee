@@ -1,11 +1,14 @@
 import { Routes, Route } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import Profile from '../pages/Profile.js';
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<Profile />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/user/:id' element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

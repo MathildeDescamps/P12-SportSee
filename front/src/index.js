@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import App from './components/App.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <section id="app-wrapper">
-    <BrowserRouter>
+  <section id="app-wrapper">    
       <App />
-    </BrowserRouter>
   </section>
 );
