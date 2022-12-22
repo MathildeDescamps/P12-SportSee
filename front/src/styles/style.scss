@@ -1,5 +1,10 @@
 @import "./components/_HorizontalBanner";
 @import "./components/_VerticalBanner";
+@import "./components/_BarGraph";
+@import "./components/_LinearGraph";
+@import "./components/_KeyData";
+
+@import "./pages/_Profile";
 
 * {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -11,4 +16,8 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
+}
+
+p {
+    margin: 0;
 }

@@ -1,0 +1,49 @@
+#app-wrapper {
+    >.page-content {
+        position: relative;
+        top: 90px;
+        width: 735px;
+        max-width: 735px;
+        height: calc(100% - 90px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: auto;
+        padding-left: 90px;
+        h1 {
+            width: 100%;
+            margin-top: 68px;
+            margin-bottom: 40px;
+            font-weight: 500;
+            font-size: 48px;
+            line-height: 24px;
+            span {
+                color: #FF0101;
+            }
+        }
+        >p {
+            width: 100%;
+            font-size: 18px;
+            margin: 0;
+        }
+        >#left-part {
+            width: 525px;
+            max-width: 525px;
+            .row {
+                display: flex;
+                width: 100%;
+                max-width: 100%;
+                height: 260px;
+                min-height: 260px;
+            }
+        }
+        >#right-part {
+            width: 180px;
+            max-width: 180px;
+        }
+        #left-part,
+        #right-part {
+            margin-top: 70px;
+        }   
+    }       
+}

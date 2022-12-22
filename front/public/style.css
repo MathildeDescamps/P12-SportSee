@@ -1,4 +1,6 @@
 #horizontal-banner {
+  position: fixed;
+  z-index: 100;
   width: 100%;
   height: 90px;
   display: flex;
@@ -23,9 +25,11 @@
 }
 
 #vertical-banner {
-  position: relative;
+  position: fixed;
+  z-index: 1000;
   width: 90px;
   height: calc(100vh - 90px);
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,6 +63,130 @@
   bottom: 95px;
 }
 
+.daily-activity {
+  margin-bottom: 30px;
+  background: #FBFBFB;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.02);
+  border-radius: 5px;
+  padding: 25px 30px 5px 30px;
+}
+.daily-activity .recharts-wrapper {
+  left: -75px;
+  padding: 10px;
+}
+
+.average-session {
+  /*     * {
+          color: #FFFFFF;        
+          stroke: #FFFFFF;
+          font-weight: normal;
+      } */
+}
+.average-session .recharts-surface {
+  background-color: #FF0000;
+}
+
+.key-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  min-width: 180px;
+  max-width: 180px;
+  background: #FBFBFB;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.02);
+  border-radius: 5px;
+  margin-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.key-data:last-child {
+  margin-bottom: 0px;
+}
+.key-data .icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 6px;
+}
+.key-data .icon-wrapper.proteinCount {
+  background: rgba(74, 184, 255, 0.1);
+}
+.key-data .icon-wrapper.carbohydrateCount {
+  background: rgba(249, 206, 35, 0.1);
+}
+.key-data .icon-wrapper.lipidCount {
+  background: rgba(253, 81, 129, 0.1);
+}
+.key-data .text-wrapper {
+  margin-left: 15px;
+}
+.key-data .text-wrapper p {
+  word-break: break-all;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #282D30;
+}
+.key-data .text-wrapper p:last-child {
+  color: #74798C;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#app-wrapper > .page-content {
+  position: relative;
+  top: 90px;
+  width: 735px;
+  max-width: 735px;
+  height: calc(100% - 90px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+  padding-left: 90px;
+}
+#app-wrapper > .page-content h1 {
+  width: 100%;
+  margin-top: 68px;
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 24px;
+}
+#app-wrapper > .page-content h1 span {
+  color: #FF0101;
+}
+#app-wrapper > .page-content > p {
+  width: 100%;
+  font-size: 18px;
+  margin: 0;
+}
+#app-wrapper > .page-content > #left-part {
+  width: 525px;
+  max-width: 525px;
+}
+#app-wrapper > .page-content > #left-part .row {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  height: 260px;
+  min-height: 260px;
+}
+#app-wrapper > .page-content > #right-part {
+  width: 180px;
+  max-width: 180px;
+}
+#app-wrapper > .page-content #left-part,
+#app-wrapper > .page-content #right-part {
+  margin-top: 70px;
+}
+
 * {
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
@@ -69,6 +197,10 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+p {
+  margin: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
