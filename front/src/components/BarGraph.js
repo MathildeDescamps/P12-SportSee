@@ -1,20 +1,25 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 function  BarGraph(props) {
+
+  let prod = process.env.REACT_APP_ENV === "prod";
+
   let userActivity;
-  let usersActivity =   Array.from(props.data);
-  usersActivity.forEach((user) => {
-    if(user.userId === props.userId){
-      userActivity = user;
-    }
-  });
-userActivity.sessions.forEach((session => {
-/* let test = session.day.split("-");
-console.log(test[2]); */
-}));
+
+  if(!prod) {
+    let usersActivity =   Array.from(props.data);
+    usersActivity.forEach((user) => {
+      if(user.userId === props.userId){
+        userActivity = user;
+      }
+    });
+  } else {
+    userActivity = props.data;
+  }
+
   return (
     <BarChart
-      data={userActivity.sessions}
+      data={prod ? userActivity.data.sessions : userActivity.sessions}
       width={500}
       height={320}
       margin={{

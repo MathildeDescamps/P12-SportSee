@@ -10,6 +10,7 @@
         justify-content: space-between;
         margin: auto;
         padding-left: 90px;
+        padding-bottom: 70px;
         h1 {
             width: 100%;
             margin-top: 68px;
@@ -31,10 +32,9 @@
             max-width: 525px;
             .row {
                 display: flex;
+                justify-content: space-between;
                 width: 100%;
                 max-width: 100%;
-                height: 260px;
-                min-height: 260px;
             }
         }
         >#right-part {

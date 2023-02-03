@@ -1,0 +1,32 @@
+.objectif-pie {
+    .recharts-wrapper {
+        .recharts-surface {
+            background-color: #FBFBFB;
+            position: relative;
+        }
+        >.pie-graph-title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #20253A;
+        }
+        >.pie-graph-legend {
+            position: absolute;
+            text-align: center;
+            top: 0;
+            left: 0;
+            padding: 48px 35px;
+            color: #74798C;
+            font-weight: 500;
+            span {
+                display: block;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 26px;
+                color: #282D30;
+                margin-bottom: 5px;
+            }
+        }
+    }
+}

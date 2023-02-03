@@ -4,7 +4,30 @@
         stroke: #FFFFFF;
         font-weight: normal;
     } */
-    .recharts-surface {
-        background-color: #FF0000;
+    .recharts-wrapper {
+        .recharts-surface {
+            background-color: #FF0000;
+            border-radius: 5px;
+            line {
+                stroke: none;
+            }
+            tspan {
+                font-size: 12px;
+                line-height: 24px;
+                stroke: none;
+                fill: #FFFFFF;
+                opacity: 0.5;
+            }
+        }
+        >p {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 12px;
+            line-height: 14px;
+            padding-right: 15px;
+            color: #FFFFFF;
+            opacity: 0.5;
+        }
     }
 }

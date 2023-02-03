@@ -71,7 +71,7 @@
   padding: 25px 30px 5px 30px;
 }
 .daily-activity .recharts-wrapper {
-  left: -75px;
+  left: -20px;
   padding: 10px;
 }
 
@@ -82,8 +82,29 @@
           font-weight: normal;
       } */
 }
-.average-session .recharts-surface {
+.average-session .recharts-wrapper .recharts-surface {
   background-color: #FF0000;
+  border-radius: 5px;
+}
+.average-session .recharts-wrapper .recharts-surface line {
+  stroke: none;
+}
+.average-session .recharts-wrapper .recharts-surface tspan {
+  font-size: 12px;
+  line-height: 24px;
+  stroke: none;
+  fill: #FFFFFF;
+  opacity: 0.5;
+}
+.average-session .recharts-wrapper > p {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  line-height: 14px;
+  padding-right: 15px;
+  color: #FFFFFF;
+  opacity: 0.5;
 }
 
 .key-data {
@@ -139,6 +160,44 @@
   font-weight: 400;
 }
 
+.performance-radar .recharts-wrapper .recharts-surface {
+  background-color: #282D30;
+  border-radius: 5px;
+}
+.performance-radar .recharts-wrapper .recharts-surface tspan {
+  fill: white;
+  font-size: 8px;
+}
+
+.objectif-pie .recharts-wrapper .recharts-surface {
+  background-color: #FBFBFB;
+  position: relative;
+}
+.objectif-pie .recharts-wrapper > .pie-graph-title {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  color: #20253A;
+}
+.objectif-pie .recharts-wrapper > .pie-graph-legend {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+  padding: 48px 35px;
+  color: #74798C;
+  font-weight: 500;
+}
+.objectif-pie .recharts-wrapper > .pie-graph-legend span {
+  display: block;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 26px;
+  color: #282D30;
+  margin-bottom: 5px;
+}
+
 #app-wrapper > .page-content {
   position: relative;
   top: 90px;
@@ -150,6 +209,7 @@
   justify-content: space-between;
   margin: auto;
   padding-left: 90px;
+  padding-bottom: 70px;
 }
 #app-wrapper > .page-content h1 {
   width: 100%;
@@ -173,10 +233,9 @@
 }
 #app-wrapper > .page-content > #left-part .row {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   max-width: 100%;
-  height: 260px;
-  min-height: 260px;
 }
 #app-wrapper > .page-content > #right-part {
   width: 180px;
