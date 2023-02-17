@@ -2,6 +2,7 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
 
 function RadarGraph(props) {
 
+  // prod is a boolean : it is true if current environment is prod, otherwise it is false.
   let prod = process.env.REACT_APP_ENV === "prod";
 
   let userPerformances;

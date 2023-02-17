@@ -2,10 +2,13 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 function  BarGraph(props) {
 
+  // prod is a boolean : it is true if current environment is prod, otherwise it is false.
   let prod = process.env.REACT_APP_ENV === "prod";
 
   let userActivity;
 
+  // If environment is dev, we received each user's activity in props.data.
+  // If environment is prod, we only received the current user's activity.
   if(!prod) {
     let usersActivity =   Array.from(props.data);
     usersActivity.forEach((user) => {

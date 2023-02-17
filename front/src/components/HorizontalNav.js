@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
 import logo from '../logo.svg';
 
-function HorizontalBanner() {
+function HorizontalNav() {
     return (
-        <nav id="horizontal-banner">
+        <nav id="horizontal-nav">
             <img src={logo} alt="Logo de SportSee" />
             <div className="nav-links">
                 <div className="links">
@@ -16,4 +16,4 @@ function HorizontalBanner() {
         </nav>
     );
 }
-export default HorizontalBanner;
+export default HorizontalNav;

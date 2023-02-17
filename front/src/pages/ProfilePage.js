@@ -1,29 +1,21 @@
 import data from "../data";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { 
-  GetUserInformations, 
-  GetUserActivity, 
-  GetUserAverageSessions,
-  GetUserPerformance
-} from "../services/UserServices";
-import HorizontalBanner from '../components/HorizontalBanner.js';
-import VerticalBanner from '../components/VerticalBanner.js';
+import { GetUserInformations, GetUserActivity, GetUserAverageSessions, GetUserPerformance } from "../services/UserServices";
+import HorizontalNav from '../components/HorizontalNav.js';
+import VerticalNav from '../components/VerticalNav.js';
 import BarGraph from '../components/BarGraph.js';
 import LinearGraph from '../components/LinearGraph.js';
 import RadarGraph from "../components/RadarGraph";
 import PieGraph from "../components/PieGraph";
 import KeyData from "../components/KeyData";
 
-function Profile() {
+function ProfilePage() {
 
+  // prod is a boolean : it is true if current environment is prod, otherwise it is false.
   let prod = process.env.REACT_APP_ENV === "prod";
   console.log("You are in " + process.env.REACT_APP_ENV + " mode !");
 
-  let JSXdev;
-  let JSXprod;
-
-  //Variables
   const [firstname, setFirstname] = useState('');
   const [keyData, setKeyData] = useState({});
   const [userActivity, setUserActivity] = useState(null);
@@ -34,6 +26,7 @@ function Profile() {
   id = parseInt(id);
   let currentUser;
 
+  // When environment is dev : find current user through users ids and url params.
   if(!prod) {
     const users = data.USER_MAIN_DATA;
     users.forEach((user) => {
@@ -43,8 +36,7 @@ function Profile() {
     });
   }
 
-  // For prod env only
-  //Runs after the component is rendered
+  // When environment is prod : fetch data from API through asynchronous functions, once the component is rendered.
   useEffect(() => {
     if(prod) {
       async function getUserMainData() {
@@ -73,14 +65,15 @@ function Profile() {
       getUserActivity();
       getUserAverageSessions();
       getUserPerformance();
-    }else {
+    } else {
       setKeyData(currentUser.keyData);
     }
   }, []);
 
-  JSXdev = 
+  // Profile page content, in JSX format, for dev environment.
+  const JSXdev = 
     <>
-      <HorizontalBanner />
+      <HorizontalNav />
         <section className="page-content">
           <h1>Bonjour <span>{currentUser && currentUser.userInfos.firstName}</span></h1>
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
@@ -108,13 +101,13 @@ function Profile() {
             }
           </div>
         </section>
-      <VerticalBanner />
+      <VerticalNav />
     </>
   ;
-
-  JSXprod = 
+  // Profile page content, in JSX format, for prod environment.
+  const JSXprod = 
     <>
-      <HorizontalBanner />
+      <HorizontalNav />
         <section className="page-content">
           <h1>Bonjour <span>{firstname && firstname}</span></h1>
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
@@ -142,7 +135,7 @@ function Profile() {
             }
           </div>
         </section>
-      <VerticalBanner />
+      <VerticalNav />
     </>
   ;
 
@@ -153,4 +146,4 @@ function Profile() {
   }
 
 }
-export default Profile;
+export default ProfilePage;
