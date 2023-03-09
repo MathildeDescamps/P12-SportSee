@@ -4,6 +4,11 @@ import chicken from "../assets/chicken.svg";
 import apple from "../assets/apple.svg";
 import cheeseburger from "../assets/cheeseburger.svg";
 
+/**
+ * This component returns a div that represents a key point : icon, name and value.
+ * Example : flame icon, 'Calories' and 1930. 
+ * @param {object} props  Contains the name and the value of the key point.
+ */
 function  KeyData(props) {
     let name;
     let valueUnity;

@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
+/**
+ * Returns a BarChart component from Recharts, describing the user's activity through weight and calories.
+ * @param {object} props contains data ( = user's activity ) and userId ( = user's id ) 
+ */
 function  BarGraph(props) {
 
-  // prod is a boolean : it is true if current environment is prod, otherwise it is false.
   let prod = process.env.REACT_APP_ENV === "prod";
 
   let userActivity;
 
-  // If environment is dev, we received each user's activity in props.data.
-  // If environment is prod, we only received the current user's activity.
+  /**
+   * If environment is dev, we received each user's activity in props.data.
+   * If environment is prod, we only received the current user's activity.
+  */
   if(!prod) {
     let usersActivity =   Array.from(props.data);
     usersActivity.forEach((user) => {
@@ -43,9 +48,18 @@ function  BarGraph(props) {
   )
 }
 
-BarGraph.propTypes = {
+let prod = process.env.REACT_APP_ENV === "prod";
+
+if(!prod){
+  BarGraph.propTypes = {
     data: PropTypes.array,
     userId: PropTypes.number,
   };
+} else {
+  BarGraph.propTypes = {
+    data: PropTypes.object,
+    userId: PropTypes.number,
+  };
+}
 
 export default BarGraph;

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/ProfilePage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/ProfilePage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import data from "../data";
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { GetUserInformations, GetUserActivity, GetUserAverageSessions, GetUserPerformance } from "../services/UserServices";
+import HorizontalNav from '../components/HorizontalNav.js';
+import VerticalNav from '../components/VerticalNav.js';
+import BarGraph from '../components/BarGraph.js';
+import LinearGraph from '../components/LinearGraph.js';
+import RadarGraph from "../components/RadarGraph";
+import PieGraph from "../components/PieGraph";
+import KeyData from "../components/KeyData";
+
+/**
+ * Returns the different components forming the profile page. 
+*/
+function ProfilePage() {
+
+  /**
+   * prod is a boolean : it is true if current environment is prod, otherwise it is false. 
+  */
+  let prod = process.env.REACT_APP_ENV === "prod";
+
+  console.log("You are in " + process.env.REACT_APP_ENV + " mode !");
+
+  const [firstname, setFirstname] = useState('');
+  const [keyData, setKeyData] = useState({});
+  const [userActivity, setUserActivity] = useState(null);
+  const [userAverageSessions, setUserAverageSessions] = useState(null);
+  const [userPerformance, setUserPerformance] = useState(null);
+  const [userScore, setUserScore] = useState(null);
+  let {id} = useParams();
+  id = parseInt(id);
+  let currentUser;
+
+  /**
+   * When environment is dev : find current user through users ids and url params. 
+  */
+  if(!prod) {
+    const users = data.USER_MAIN_DATA;
+    users.forEach((user) => {
+      if(user.id === id) {
+        currentUser = user;
+      }
+    });
+  }
+
+  /**
+   * When environment is prod : fetch data from API through asynchronous functions, once the component is rendered. 
+  */
+  useEffect(() => {
+    if(prod) {
+      async function getUserMainData() {
+        const {data:{data}} = await GetUserInformations(id);
+        setFirstname(data.userInfos.firstName);
+        setKeyData(data.keyData);
+        if(data.score){
+          setUserScore(data.score)
+        } else if (data.todayScore){
+          setUserScore(data.todayScore);
+        }
+      };
+      async function getUserActivity() {
+        const {data} = await GetUserActivity(id);
+        setUserActivity(data);
+      };
+      async function getUserAverageSessions() {
+        const {data:{data}} = await GetUserAverageSessions(id);
+        setUserAverageSessions(data);
+      };
+      async function getUserPerformance() {
+        const {data:{data}} = await GetUserPerformance(id);
+        setUserPerformance(data);
+      };
+      getUserMainData();
+      getUserActivity();
+      getUserAverageSessions();
+      getUserPerformance();
+    } else {
+      setKeyData(currentUser.keyData);
+    }
+  }, []);
+
+  /**
+   * Profile page content, in JSX format, for dev environment. 
+  */
+  const JSXdev = 
+    &lt;>
+      &lt;HorizontalNav />
+        &lt;section className="page-content">
+          &lt;h1>Bonjour &lt;span>{currentUser &amp;&amp; currentUser.userInfos.firstName}&lt;/span>&lt;/h1>
+          &lt;p>Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/p>
+          &lt;div id="left-part">
+            &lt;div className="daily-activity">
+              &lt;BarGraph data={data.USER_ACTIVITY} userId={id} />
+            &lt;/div>
+            &lt;div className="row">
+              &lt;div className="average-session">
+                &lt;LinearGraph data={data.USER_AVERAGE_SESSIONS} userId={id} />
+              &lt;/div>
+              &lt;div className="performance-radar">
+                &lt;RadarGraph data={data.USER_PERFORMANCE} userId={id} />
+              &lt;/div>
+              &lt;div className="objectif-pie">
+                &lt;PieGraph data={data.USER_MAIN_DATA} userId={id} />
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+          &lt;div id="right-part">
+            { 
+              Object.keys(keyData).map((key, index) => {
+                return &lt;KeyData name={key} value={keyData[key]} key={index} />
+              })
+            }
+          &lt;/div>
+        &lt;/section>
+      &lt;VerticalNav />
+    &lt;/>
+  ;
+
+  /**
+   * Profile page content, in JSX format, for production environment. 
+  */
+  const JSXprod = 
+    &lt;>
+      &lt;HorizontalNav />
+        &lt;section className="page-content">
+          &lt;h1>Bonjour &lt;span>{firstname &amp;&amp; firstname}&lt;/span>&lt;/h1>
+          &lt;p>Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/p>
+          &lt;div id="left-part">
+            &lt;div className="daily-activity">
+              {userActivity &amp;&amp; &lt;BarGraph data={userActivity} userId={id} />}
+            &lt;/div>
+            &lt;div className="row">
+              &lt;div className="average-session">
+                {userAverageSessions &amp;&amp; &lt;LinearGraph data={userAverageSessions} userId={id} />}
+              &lt;/div> 
+              &lt;div className="performance-radar">
+                {userPerformance &amp;&amp; &lt;RadarGraph data={userPerformance} userId={id} />}
+              &lt;/div>
+              &lt;div className="objectif-pie">
+                {userScore &amp;&amp; &lt;PieGraph data={userScore} userId={id} /> }
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+          &lt;div id="right-part">
+            { 
+              Object.keys(keyData).map((key, index) => {
+                return &lt;KeyData name={key} value={keyData[key]} key={index} />
+              })
+            }
+          &lt;/div>
+        &lt;/section>
+      &lt;VerticalNav />
+    &lt;/>
+  ;
+
+  if(prod) {
+    return JSXprod;
+  } else {
+    return JSXdev;
+  }
+
+}
+export default ProfilePage;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BarGraph">BarGraph</a></li><li><a href="global.html#HorizontalNav">HorizontalNav</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#LinearGraph">LinearGraph</a></li><li><a href="global.html#PieGraph">PieGraph</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#RadarGraph">RadarGraph</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Mar 09 2023 16:23:16 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

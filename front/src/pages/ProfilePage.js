@@ -10,10 +10,16 @@ import RadarGraph from "../components/RadarGraph";
 import PieGraph from "../components/PieGraph";
 import KeyData from "../components/KeyData";
 
+/**
+ * Returns the different components forming the profile page. 
+*/
 function ProfilePage() {
 
-  // prod is a boolean : it is true if current environment is prod, otherwise it is false.
+  /**
+   * prod is a boolean : it is true if current environment is prod, otherwise it is false. 
+  */
   let prod = process.env.REACT_APP_ENV === "prod";
+
   console.log("You are in " + process.env.REACT_APP_ENV + " mode !");
 
   const [firstname, setFirstname] = useState('');
@@ -26,7 +32,9 @@ function ProfilePage() {
   id = parseInt(id);
   let currentUser;
 
-  // When environment is dev : find current user through users ids and url params.
+  /**
+   * When environment is dev : find current user through users ids and url params. 
+  */
   if(!prod) {
     const users = data.USER_MAIN_DATA;
     users.forEach((user) => {
@@ -36,7 +44,9 @@ function ProfilePage() {
     });
   }
 
-  // When environment is prod : fetch data from API through asynchronous functions, once the component is rendered.
+  /**
+   * When environment is prod : fetch data from API through asynchronous functions, once the component is rendered. 
+  */
   useEffect(() => {
     if(prod) {
       async function getUserMainData() {
@@ -70,7 +80,9 @@ function ProfilePage() {
     }
   }, []);
 
-  // Profile page content, in JSX format, for dev environment.
+  /**
+   * Profile page content, in JSX format, for dev environment. 
+  */
   const JSXdev = 
     <>
       <HorizontalNav />
@@ -104,7 +116,10 @@ function ProfilePage() {
       <VerticalNav />
     </>
   ;
-  // Profile page content, in JSX format, for prod environment.
+
+  /**
+   * Profile page content, in JSX format, for production environment. 
+  */
   const JSXprod = 
     <>
       <HorizontalNav />
@@ -118,7 +133,7 @@ function ProfilePage() {
             <div className="row">
               <div className="average-session">
                 {userAverageSessions && <LinearGraph data={userAverageSessions} userId={id} />}
-              </div>
+              </div> 
               <div className="performance-radar">
                 {userPerformance && <RadarGraph data={userPerformance} userId={id} />}
               </div>

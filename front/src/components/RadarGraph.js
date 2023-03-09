@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
 
+/**
+ * Returns a RadarChart component from Recharts, showing the user's performances in different categories of sport.
+ * @param {object} props contains data ( = user's performances ) and userId ( = user's id ) 
+ */
 function RadarGraph(props) {
 
-  // prod is a boolean : it is true if current environment is prod, otherwise it is false.
   let prod = process.env.REACT_APP_ENV === "prod";
 
   let userPerformances;
@@ -50,9 +53,18 @@ function RadarGraph(props) {
   );
 }
 
-RadarGraph.propTypes = {
+let prod = process.env.REACT_APP_ENV === "prod";
+
+if(!prod){
+  RadarGraph.propTypes = {
     data: PropTypes.array,
     userId: PropTypes.number,
-};
+  };
+} else {
+  RadarGraph.propTypes = {
+    data: PropTypes.object,
+    userId: PropTypes.number,
+  };
+}
 
 export default RadarGraph;

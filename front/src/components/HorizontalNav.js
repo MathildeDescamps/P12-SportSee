@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom";
 import logo from '../logo.svg';
 
+/**
+ * This function returns the navigation block,  containing SportSee logo and links.
+*/
 function HorizontalNav() {
     return (
         <nav id="horizontal-nav">
