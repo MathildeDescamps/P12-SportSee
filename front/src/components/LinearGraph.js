@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AreaChart, Area, XAxis, Tooltip } from 'recharts';
 
 function LinearGraph(props) {
@@ -62,4 +63,10 @@ function LinearGraph(props) {
         </AreaChart>
     );
 }
+
+LinearGraph.propTypes = {
+    data: PropTypes.array,
+    userId: PropTypes.number,
+  };
+
 export default LinearGraph;

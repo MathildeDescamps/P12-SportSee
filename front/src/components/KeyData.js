@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import flame from "../assets/flame.svg";
 import chicken from "../assets/chicken.svg";
 import apple from "../assets/apple.svg";
@@ -42,4 +43,10 @@ function  KeyData(props) {
     )
 
 }
+
+KeyData.propTypes = {
+    name: PropTypes.string,
+    value: PropTypes.number,
+  };
+
 export default KeyData;

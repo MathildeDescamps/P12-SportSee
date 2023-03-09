@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { RadialBarChart, RadialBar, Legend, Tooltip  } from 'recharts';
 
 function PieGraph(props){
@@ -64,4 +65,10 @@ function PieGraph(props){
 
     );
 }
+
+PieGraph.propTypes = {
+    data: PropTypes.array,
+    userId: PropTypes.number,
+};
+
 export default PieGraph;

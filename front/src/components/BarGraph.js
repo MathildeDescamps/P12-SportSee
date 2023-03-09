@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 function  BarGraph(props) {
@@ -41,4 +42,10 @@ function  BarGraph(props) {
     </BarChart>
   )
 }
+
+BarGraph.propTypes = {
+    data: PropTypes.array,
+    userId: PropTypes.number,
+  };
+
 export default BarGraph;

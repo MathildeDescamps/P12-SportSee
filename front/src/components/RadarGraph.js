@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
 
 function RadarGraph(props) {
@@ -48,4 +49,10 @@ function RadarGraph(props) {
     </RadarChart>
   );
 }
+
+RadarGraph.propTypes = {
+    data: PropTypes.array,
+    userId: PropTypes.number,
+};
+
 export default RadarGraph;
